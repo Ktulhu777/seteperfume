@@ -1,0 +1,242 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html {height: 100%;}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    font-weight: 300;
+    background: url('../images/per.jpeg') no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+ul {list-style: none;}
+
+.header {
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.header-container {
+    margin: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+
+.auth a:hover, .about-contacts a:hover {
+    color:rgb(160, 160, 160)
+}
+
+.icon {
+    margin: 0 2px 0 15px;
+    width: 20px;
+    height: 20px;
+}
+
+.shop-icon a {font-size: 18px;}
+
+.icon:hover {
+    position: relative;
+    top:2px
+}
+
+.search input {
+    border-radius: 5px;
+    height: 20px;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex: 1 0 auto;
+}
+
+main h1, main hr {margin-left: 30px;}
+
+.moderno {
+    text-shadow: 5px 4px 4px black;
+    transition: all 1s ease;
+}
+
+.moderno:hover{
+    transform: scale(1.1);
+    text-shadow: 2px 2px 4px black;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.5);
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.footer {
+    margin: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer > span {color:white}
+
+.social a, .about-contacts a {margin-left: 5px;}
+
+.social a img {
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    box-shadow: silver 1px 1px 16px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+
+.social a img:hover {
+    box-shadow: none;
+    position: relative;
+    left: 2px;
+    top: 2px
+}
+
+
+/* Стили для системы авторизации, регистрации... */
+
+
+
+/* Конец стилей для системы авторизации */
+
+/* Стили для старницы с вещами */
+.cat-menu {
+    width: 20%;
+    margin: 20px 20px 20px 30px;
+    font-size: 20px;
+}
+
+.cat-menu ul li {
+    box-shadow: silver 1px 1px 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.6);
+}
+
+.cat-menu ul li:hover {
+    box-shadow: none;
+}
+
+.goods {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 20px 30px 20px 0px;
+}
+
+.card, .product {
+    background: white;
+    color: black;
+    width: 16vw;
+    height: 42vh;
+    box-shadow: rgb(0, 0, 0) 3px 4px 3px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bolder;
+    transition: transform 1s ease;
+    overflow: auto;
+}
+
+.card:hover {
+    box-shadow: 1px 1px 20px 10px;
+    transform: scale(1.05);
+}
+
+.card img, .product img{
+    width: 100%;
+    height: 70%;
+}
+
+
+.price {
+    font-weight: bold;
+    text-align: start;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.cat-all {
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.product {
+    width: 40vw;
+    height: 80vh;
+}
+
+/* Конец стилей для старницы с вещами */
+
+/* Стили для пагинации страницы */
+
+.list-pages {
+ text-align: center;
+ margin: 0 0 20px 0;
+}
+.list-pages ul {
+ /* margin: 20px 0 0 0;  */
+ padding: 0;
+ list-style: none;
+}
+.list-pages ul li {
+ display: inline-block;
+ /* margin: 0 20px 0 0; */
+}
+.list-pages a {
+ color: #000;
+ font-size: 24px;
+ text-decoration: none;
+}
+.list-pages .page-num, .page-num-selected {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(3px);
+    color: white;
+ display: inline-block;
+ width: 30px;
+ height: 30px;
+    font-weight: 500;
+ /* border: 1px solid white; */
+ border-radius: 50px;
+
+}
+.list-pages .page-num:hover {
+ box-shadow: 2px 2px 4px black;
+}
+.list-pages .page-num-selected {
+ border: none;
+ color: #000;
+ font-size: 20px;
+}
+.list-pages .page-num-selected:hover {
+ box-shadow: none;
+}
+/* Конец стилям для пагинации страницы */

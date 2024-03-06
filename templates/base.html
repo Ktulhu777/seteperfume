@@ -1,0 +1,105 @@
+{% load static %}
+{% load perfume_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{% static 'men/css/style.css' %}" rel="stylesheet"/>
+    <link type="text/css" href="{% static 'users/css/styles.css' %}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+<!--Начало шапки профиля-->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <h1 class="moderno">Perfume.com</h1>
+            </a>
+        </div>
+
+        <div class="search">
+            <label for="search">Поиск по сайту: </label>
+            <input type="text" name="" id="search" placeholder=" Поиск...">
+        </div>
+
+        <div class="shop-icon">
+            <a href="">
+                <img class="icon" src="{% static 'men/images/icon-heart.png' %}" alt=""> 0
+            </a>
+            <a href="">
+                <img class="icon" src="{% static 'men/images/icon-shop.png' %}" alt=""> 0
+            </a>
+        </div>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'users:profile' %}">{{ user.username }}</a> |
+    <a href="{% url 'users:logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+            <form id="logout-form" method="POST" style="display: none;" action="{% url 'users:logout' %}">{% csrf_token %}</li>
+        {% else %}
+            <li><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
+        {% endif %}
+    </div>
+</header>
+<!--Конец шапки профиля-->
+<main class="main">
+    {% show_categories cat_selected %}
+    {% block content %}
+    {% endblock %}
+</main>
+{% block navigation %}
+{% if page_obj.has_other_pages %}
+<nav class="list-pages">
+    <ul>
+  {% if page_obj.has_previous %}
+  <li class="page-num">
+   <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+  </li>
+  {% endif %}
+
+        {% for p in paginator.page_range %}
+  {% if page_obj.number == p %}
+  <li class="page-num page-num-selected">{{ p }}</li>
+  {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li class="page-num">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+  {% endif %}
+        {% endfor %}
+
+  {% if page_obj.has_next %}
+  <li class="page-num">
+   <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+  </li>
+  {% endif %}
+
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
+<footer>
+    <div class="footer">
+        <span>&copy; Все права защищены!</span>
+        <div class="social">
+            <a href="https://vk.com/feed" aria-placeholder="VK">
+                <img src="{% static 'men/images/vk.png' %}" alt="" title="vk">
+            </a>
+            <a href="#">
+                <img src="{% static 'men/images/telegram.png' %}" alt="" title="telegram">
+            </a>
+            <a href="https://www.instagram.com">
+                <img src="{% static 'men/images/instagram.png' %}" alt="" title="instagram">
+            </a>
+            <a href="#">
+                <img src="{% static 'men/images/youtube.png' %}" alt="" title="youtube">
+            </a>
+        </div>
+        <div class="about-contacts social">
+            <a href="{% url 'contact' %}"> <img src="{% static 'men/images/contact.png' %}" alt="" title="Наши контакты"> Контакты |</a>
+            <a href="{% url 'about' %}"><img src="{% static 'men/images/about.png' %}" alt="" title="О нас"> О нас</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

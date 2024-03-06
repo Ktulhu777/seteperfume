@@ -1,0 +1,33 @@
+{% extends 'base_users.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>Авторизация</h1>
+    <button id="open-modal-btn">Открыть мадольное окно</button>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <div class="form-error">{{ form.non_field_errors }}</div>
+    <div class="modal" id="my-modal">
+        <div class="modal__box">
+            <button class="modal__close-btn" id="close-my-modal-btn">
+                <img src="{% static 'users/images/close.svg' %}" alt="X" title="Close">
+            </button>
+            {% for f in form %}
+            <p><label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+            {{ f.errors }}
+            {% endfor %}
+            <p><button type="submit">Войти</button></p>
+            <p class="social">
+                <a href="#"><img src="/media/social-auth/github.png"></a>
+                <a href="#"><img src="/media/social-auth/vk.png"></a>
+            </p>
+            <p><button><a href="{% url 'home' %}">Забыли пароль?</a></button></p>
+        </div>
+    </div>
+</form>
+<hr>
+{% endblock %}

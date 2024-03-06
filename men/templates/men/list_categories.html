@@ -1,0 +1,8 @@
+<div class="cat-menu">
+    <ul>
+        <a class="cat-all" href="{% url 'home' %}"><li>Все категории</li></a>
+        {% for i in cats %}
+        <a href="{{ i.get_absolute_url }}"><li>{{ i.cat_name }}</li></a>
+        {% endfor %}
+    </ul>
+</div>

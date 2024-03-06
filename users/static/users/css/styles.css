@@ -1,0 +1,70 @@
+/* Стили для системы авторизации, регистрации... */
+.auth-block {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 30px 20px 0px;
+}
+
+.auth-form {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.auth-form h1,  .auth-form hr{
+    margin-left: 0px;
+    font-weight: 400;
+    text-align: center;
+}
+.form-input {
+    margin: 10px;
+    width: 20vw;
+    height: 3vh;
+    border-radius: 5px;
+    border: none;
+}
+
+.form-error {
+    color: white;
+}
+
+.form-label {
+    color: white;
+    display: inline-block;
+    min-width: 150px;
+    font-weight: 400;
+}
+
+.button {
+    text-align: center;
+
+}
+
+form {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+form button {
+    width: 7vw;
+    height: 4vh;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+    background: white;
+    font-weight: 400;
+    font-size: 13px;
+    border: none;
+}
+
+form button:active {
+    border: 1px solid black;
+}
+
+/* Конец стилей для системы авторизации */

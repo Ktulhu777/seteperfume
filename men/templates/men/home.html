@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="goods">
+    {% for i in posts %}
+    <a href="{{ i.get_absolute_url }}">
+        <div class="card">
+            {% if i.photo %}
+            <img src="{{ i.photo.url }}" title="{{ i.title }}">
+            <p>{{i.title}}</p>
+                <p class="price">{{i.price}}</p>
+            {% else %}
+            <p>Нет фото</p>
+            <p>{{ i.title }}</p>
+            <p class="price">{{i.price}}</p>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}
