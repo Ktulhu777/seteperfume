@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
+
 from men.forms import ReviewForm
 from men.models import Perfume, Basket, Review
 from men.utils import DataMixin
