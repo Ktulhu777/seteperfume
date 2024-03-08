@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from unidecode import unidecode
+from users.models import User
 
 
 class PublishedManager(models.Manager):
@@ -10,6 +11,7 @@ class PublishedManager(models.Manager):
 
 
 class Perfume(models.Model):
+    """Основная модель продукта"""
     class Status(models.IntegerChoices):
         DRAFT = 0, 'Черновик'
         PUBLISHED = 1, 'Опубликовано'
@@ -84,7 +86,12 @@ class UploadFiles(models.Model):
 
 
 class Review(models.Model):
+    """Модель отзывов"""
+    user_review = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     review = models.TextField(blank=True, verbose_name='Отзыв')
+    product_review = models.ForeignKey(Perfume, on_delete=models.CASCADE)
+
+    objects = models.Manager()
 
     def __str__(self):
         return self.review
@@ -92,3 +99,21 @@ class Review(models.Model):
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
+
+
+class Basket(models.Model):
+    """Модель  корзины"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Ник')
+    product = models.ForeignKey(Perfume, on_delete=models.CASCADE, verbose_name='Продукт')
+    quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+    update_timestamp = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return f"Корзина для {self.user.username} | {self.product.title}"
+
+    def total_amount(self):
+        """Подсчет общей суммы товара количество * цена товара"""
+        return self.quantity * self.product.price

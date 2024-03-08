@@ -240,3 +240,36 @@ footer > span {color:white}
  box-shadow: none;
 }
 /* Конец стилям для пагинации страницы */
+
+.product {
+    background: white;
+    color: black;
+    width: 16vw;
+    height: 38vh;
+    box-shadow: rgb(0, 0, 0) 3px 4px 3px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bolder;
+    transition: transform 1s ease;
+    overflow: auto;
+}
+
+.product img{
+    width: 100%;
+    height: 70%;
+}
+
+.product {
+    width: 40vw;
+    height: 80vh;
+}
+
+.block-product {
+    justify-content: flex-start;
+}
+
+.basket {
+    width: 40%;
+    background-color: aliceblue;
+}

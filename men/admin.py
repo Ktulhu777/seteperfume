@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 from django.utils.safestring import mark_safe
 from django.db.models import Count
-from .models import Perfume, Category, Tags
+from .models import Perfume, Category, Tags, Basket, Review
 
 
 @admin.register(Perfume)
@@ -37,3 +37,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class TagsAdmin(admin.ModelAdmin):
     fields = ["tag_name", "slug"]
     prepopulated_fields = {"slug": ("tag_name",)}
+
+
+admin.site.register(Basket)
+admin.site.register(Review)

@@ -21,16 +21,18 @@
         </div>
 
         <div class="search">
-            <label for="search">Поиск по сайту: </label>
-            <input type="text" name="" id="search" placeholder=" Поиск...">
+            <form action="{% url 'search' %}" method="get">
+                <label for="search">Поиск по сайту: </label>
+                <input type="text" name="search" id="search" placeholder=" Поиск...">
+            </form>
         </div>
 
         <div class="shop-icon">
             <a href="">
-                <img class="icon" src="{% static 'men/images/icon-heart.png' %}" alt=""> 0
+                <img class="icon" src="{% static 'men/images/icon-heart.png' %}" alt="">
             </a>
-            <a href="">
-                <img class="icon" src="{% static 'men/images/icon-shop.png' %}" alt=""> 0
+            <a href="{% url 'basket' %}">
+                <img class="icon" src="{% static 'men/images/icon-shop.png' %}" alt="">
             </a>
         </div>
         {% if user.is_authenticated %}

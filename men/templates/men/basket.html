@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if baskets %}
+        {% for basket in baskets %}
+ <div class="row">
+    <div class="col-lg-3 col-sm-3 col-xs-12" style="height: 100px; line-height: 100px;">
+    <img  src="ссылка на фото" style="width: 80px; height: 80px;  " />
+    </div>
+    <div  class="col-lg-3 col-sm-3 col-xs-12 mob-fix" style="height: 100px; line-height: 100px;">
+     {{ basket.product.title }}
+    </div>
+    <div class="col-lg-2 col-sm-2 col-xs-12 mob-fix">
+    {{ basket.product.content|linebreaks }}
+    </div>
+    <div class="col-lg-1 col-sm-2 col-xs-12 mob-fix" style="height: 100px; line-height: 100px;">
+        <a href="{% url 'basket_add' basket.product.slug %}">
+            <button type="button">
+                {{ basket.quantity }}
+            </button>
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-2 col-xs-12 mob-fix" style="height: 100px; line-height: 100px;">
+        <a href="{% url 'basket_del' basket.id %}">
+            <button type="button">
+                Удалить
+            </button>
+        </a>
+        <p>Итого {{ total_amount }}</p>
+        <p>Количество товаров {{ total_quantity }}</p>
+    </div>
+     {% endfor %}
+  </div>
+{% else %}
+<h1>Ваша коризна пуста</h1>
+{% endif %}
+{% endblock content %}

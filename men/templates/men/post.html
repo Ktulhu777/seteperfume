@@ -1,11 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="product">{{post.title}}</h1>
+<div class="goods block-product">
+    <div class="product">
+        {% if post.photo %}
+        <img src="{{ post.photo.url }}" title="{{ post.title }}">
+        {% else %}
+        <h1>Нет фото</h1>
+        {% endif %}
+        <p>{{post.title}}</p>
+        {% autoescape off %}
+        {{post.content}}
+        {% endautoescape %}
+        <p class="price">{{post.price}} p.</p>
+        <a href="{% url 'basket_add' post.slug %}">
+            <button type="button">
+                Добавить в корзину
+            </button>
+        </a>
+    </div>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+            {% for f in form %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
+            <p><button type="submit">Отправить</button></p>
+        </form>
+        {% for review in reviews %}
+            <h1>{{ review.user_review }}</h1>
+            <h3>Отзыв: {{ review.review }}</h3>
+        {% endfor %}
+    </div>
 
-{% if post.photo %}
-<p class="product"><img class="img-article-left" src="{{post.photo.url}}"></p>
-{% endif %}
-
-{{post.content}}
+</div>
 {% endblock content %}
