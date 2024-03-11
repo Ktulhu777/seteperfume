@@ -11,3 +11,10 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'review': forms.TextInput(attrs={'class': 'class-input'})
         }
+
+    def clean_review(self):
+        review = self.cleaned_data['review']
+        if len(review) < 5:
+            raise ValidationError("Длинна отзыва минумум 5 символов")
+        return review
+

@@ -35,12 +35,19 @@
                 <img class="icon" src="{% static 'men/images/icon-shop.png' %}" alt="">
             </a>
         </div>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'users:profile' %}">{{ user.username }}</a> |
-    <a href="{% url 'users:logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>{% csrf_token %}</li>
-        {% else %}
-            <li><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
-        {% endif %}
+{% if user.is_authenticated %}
+				<li class="last">
+	<a href="{% url 'users:profile' %}">{{ user.username }}</a> |
+	<a href="{% url 'users:logout' %}"
+		   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+	<form id="logout-form" method="POST" style="display: none;" action="{% url 'users:logout' %}">
+    	{% csrf_token %}
+    	<button type="submit">Выйти</button>
+    </form>
+</li>
+{% else %}
+    <li><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
+{% endif %}
     </div>
 </header>
 <!--Конец шапки профиля-->
