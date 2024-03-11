@@ -1,34 +1,36 @@
 /* Стили для системы авторизации, регистрации... */
-.auth-block {
-    width: 50%;
+.form-block {
+    width: 80%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin: 20px 30px 20px 0px;
 }
 
-.auth-form {
+.auth-form, .profile {
     height: auto;
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
 
-.auth-form h1,  .auth-form hr{
+form h1 {
+    margin-bottom: 10px;
     margin-left: 0px;
-    font-weight: 400;
+    font-weight: 300;
     text-align: center;
 }
-.form-input {
-    margin: 10px;
+
+form hr {margin: 10px 0px;}
+
+.form-input, form p > select {
+    margin: 10px 0px;
+    padding-left: 3px;
+    font-size: 14px;
     width: 20vw;
     height: 3vh;
     border-radius: 5px;
     border: none;
-}
-
-.form-error {
-    color: white;
 }
 
 .form-label {
@@ -36,11 +38,6 @@
     display: inline-block;
     min-width: 150px;
     font-weight: 400;
-}
-
-.button {
-    text-align: center;
-
 }
 
 form {
@@ -52,8 +49,7 @@ form {
 }
 
 form button {
-    width: 7vw;
-    height: 4vh;
+    padding: 5px 10px;
     cursor: pointer;
     margin: 10px;
     border-radius: 5px;
@@ -63,8 +59,60 @@ form button {
     border: none;
 }
 
+form button:hover {
+    box-shadow: 1px 1px 10px white;
+}
+
 form button:active {
-    border: 1px solid black;
+    box-shadow: none;
+}
+
+form a:hover, .change-password a:hover {text-shadow: 1px 1px 5px white;}
+
+.form-image {
+text-align: center;
+width: 100%;
+height: auto;
+}
+
+.form-image > img {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+form p > select {
+    width: 50%;
+    margin-right: 50px;
+}
+
+form p {
+    white-space: nowrap;
+}
+
+
+.form-error {
+    color: white;
+    white-space: nowrap;
+}
+
+
+.profile-block, .password-block {
+    width: 100%;
+    margin: 20px 0;
+}
+
+#id_date_birth_day {
+    width: 100px;
 }
 
 /* Конец стилей для системы авторизации */

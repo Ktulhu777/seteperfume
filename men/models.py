@@ -46,7 +46,7 @@ class Perfume(models.Model):
         return reverse('post', kwargs={'post_slug': self.slug})
 
     def save(self, *args, **kwargs):
-        transliterated_title = unidecode(self.title)
+        transliterated_title = unidecode(str(self.title))
         self.slug = slugify(transliterated_title)
         super().save(*args, **kwargs)
 
@@ -88,8 +88,8 @@ class UploadFiles(models.Model):
 class Review(models.Model):
     """Модель отзывов"""
     user_review = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    review = models.TextField(blank=True, verbose_name='Отзыв')
-    product_review = models.ForeignKey(Perfume, on_delete=models.CASCADE)
+    review = models.TextField(blank=True, verbose_name='Отзыв', null=True)
+    product_review = models.ForeignKey(Perfume, on_delete=models.CASCADE, null=True)
 
     objects = models.Manager()
 

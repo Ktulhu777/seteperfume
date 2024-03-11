@@ -37,8 +37,7 @@
         </div>
         {% if user.is_authenticated %}
         <li><a href="{% url 'users:profile' %}">{{ user.username }}</a> |
-    <a href="{% url 'users:logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
-            <form id="logout-form" method="POST" style="display: none;" action="{% url 'users:logout' %}">{% csrf_token %}</li>
+    <a href="{% url 'users:logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>{% csrf_token %}</li>
         {% else %}
             <li><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
         {% endif %}

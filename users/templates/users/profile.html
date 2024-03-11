@@ -1,25 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Профиль</h1>
+<div class="form-block profile-block">
+    <div class="profile">
+        <form method="post" enctype="multipart/form-data">
+            <h1>Ваш профиль:</h1>
+            {% csrf_token %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% if user.photo %}
-    <p><img src="{{ user.photo.url }}"></p>
-    {% else %}
-    <p><img src="{{ default_image }}"></p>
-    {% endif %}
-    <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
+            {% if user.photo %}
+            <div class="form-image">
+                <img src="{{ user.photo.url }}">
+            </div>
+            {% else %}
+            <div class="form-image">
+                <img src="{{ default_image }}">
+            </div>
+            {% endif %}
 
-    <p><button type="submit">Сохранить</button></p>
-</form>
-{% if not perms.users.social_auth %}
-<hr>
-<p><a href="{% url 'users:password_change' %}">Изменить пароль</a></p>
-{% endif %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+            {% for f in form %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
+            <div class="button">
+                <button type="submit">Сохранить</button>
+            </div>
+
+            <hr>
+            <a href="{% url 'users:password_change' %}">Сменить пароль</a>
+        </form>
+    </div>
+</div>
 {% endblock %}

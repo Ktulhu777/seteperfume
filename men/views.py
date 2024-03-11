@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
 
 from men.forms import ReviewForm
@@ -36,11 +37,6 @@ class PostDetailView(DataMixin, DetailView, CreateView):
 
     def get_reviews(self, slug_url_kwarg):
         return Review.objects.filter(product_review=slug_url_kwarg)
-
-    def form_valid(self, form):
-        w = form.save(commit=False)
-        w.author = self.request.user
-        return super().form_valid(form)
 
 
 class CategoryView(DataMixin, ListView):
@@ -121,3 +117,16 @@ class SearchView(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['search'] = self.request.GET.get('search')
         return self.get_mixin_context(context)
+
+
+class AddReview(LoginRequiredMixin, View):
+
+    def post(self, request, pk):
+        form = ReviewForm(request.POST)
+        product = Perfume.objects.get(id=pk)
+        if form.is_valid():
+            w = form.save(commit=False)
+            w.user_review = self.request.user
+            w.product_review = product
+            w.save()
+        return redirect(request.META.get("HTTP_REFERER"))

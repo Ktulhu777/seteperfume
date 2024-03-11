@@ -20,7 +20,7 @@
         </a>
     </div>
     <div>
-        <form method="post">
+        <form action="{% url 'add_review' post.id %}" method="post">
             {% csrf_token %}
             <div class="form-error">{{ form.non_field_errors }}</div>
             {% for f in form %}

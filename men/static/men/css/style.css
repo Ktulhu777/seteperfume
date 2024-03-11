@@ -117,13 +117,6 @@ footer > span {color:white}
     top: 2px
 }
 
-
-/* Стили для системы авторизации, регистрации... */
-
-
-
-/* Конец стилей для системы авторизации */
-
 /* Стили для старницы с вещами */
 .cat-menu {
     width: 20%;
@@ -273,3 +266,4 @@ footer > span {color:white}
     width: 40%;
     background-color: aliceblue;
 }
+
