@@ -1,0 +1,7 @@
+django
+django-debug-toolbar==4.3.0
+social-auth-app-django==5.4.1
+django-extensions==3.2.3
+unidecode
+pillow==10.3.0
+
